@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   end
   
   def authenticate
-    logged_in? ? true : access_denied("Please log in to continue")
+    logged_in? ? true : access_denied("Please log in")
   end
   
   def logged_in?

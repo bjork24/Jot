@@ -1,4 +1,7 @@
 class EntriesController < ApplicationController
+  
+  before_filter :authenticate
+  
   # GET /entries
   # GET /entries.xml
   def index
