@@ -6,3 +6,15 @@ class UserTest < ActiveSupport::TestCase
     assert true
   end
 end
+
+
+# == Schema Information
+#
+# Table name: users
+#
+#  id       :integer(4)      not null, primary key
+#  provider :string(255)
+#  uid      :string(255)
+#  name     :string(255)
+#
+
