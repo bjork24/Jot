@@ -13,25 +13,21 @@ class EntriesController < ApplicationController
     end
   end
 
-  # GET /entries/1
-  # GET /entries/1.xml
   def show
-    @entry = Entry.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @entry }
+    if params[:id]
+      entry = Entry.find(params[:id]).created_at
+      redirect_to("/entries/#{entry.strftime("%y")}/#{entry.month}/#{entry.day}")
+    else
+      @entries = Entry.get_entries(params)
     end
   end
 
-  # GET /entries/new
-  # GET /entries/new.xml
   def new
-    @entry = Entry.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @entry }
+    entry = Entry.is_written?(params)
+    if entry
+      redirect_to(entry)
+    else
+      @entry = Entry.new
     end
   end
 
