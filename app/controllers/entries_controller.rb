@@ -1,15 +1,11 @@
 class EntriesController < ApplicationController
   
   before_filter :authenticate
-  
-  # GET /entries
-  # GET /entries.xml
-  def index
-    @entries = Entry.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @entries }
+  def index
+    @entries = []
+    (0..14).each do |n|
+      @entries << Entry.is_written?(Date.today - n)
     end
   end
 
@@ -31,23 +27,24 @@ class EntriesController < ApplicationController
     end
   end
 
-  # GET /entries/1/edit
   def edit
     @entry = Entry.find(params[:id])
   end
 
-  # POST /entries
-  # POST /entries.xml
   def create
-    @entry = Entry.new(params[:entry])
-
-    respond_to do |format|
-      if @entry.save
-        format.html { redirect_to(@entry, :notice => 'Entry was successfully created.') }
-        format.xml  { render :xml => @entry, :status => :created, :location => @entry }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @entry.errors, :status => :unprocessable_entity }
+    if params[:date_token]
+      jotDate = Date::strptime(params[:date_token], "%y-%m-%d").to_datetime
+      @entry = Entry.new(params[:entry])
+      respond_to do |format|
+        if @entry.save
+          @entry.created_at = jotDate
+          @entry.save
+          format.html { redirect_to("/entries/#{jotDate.month}/#{jotDate.day}", :notice => 'Entry was successfully created.') }
+          format.xml  { render :xml => @entry, :status => :created, :location => @entry }
+        else
+          format.html { render :action => "new" }
+          format.xml  { render :xml => @entry.errors, :status => :unprocessable_entity }
+        end
       end
     end
   end

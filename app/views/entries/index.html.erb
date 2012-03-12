@@ -1,25 +1,12 @@
-<h1>Listing entries</h1>
-
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Body</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @entries.each do |entry| %>
-  <tr>
-    <td><%= entry.title %></td>
-    <td><%= entry.body %></td>
-    <td><%= link_to 'Show', entry %></td>
-    <td><%= link_to 'Edit', edit_entry_path(entry) %></td>
-    <td><%= link_to 'Destroy', entry, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Entry', new_entry_path %>
+<ul>
+  <% @entries.each_with_index do |entry,i| %>
+    <li>
+      <% if !!entry == entry %>
+        <% jotDate = Date.today - i %>
+        <%= link_to jotDate.strftime("%a, %m.%d.%y"), "/entries/new/#{jotDate.strftime('%y')}/#{jotDate.month}/#{jotDate.day}" %>
+      <% else %>
+        <%= link_to "#{entry.first.title} - #{entry.first.created_at.strftime('%a, %m.%d.%y')}", entry.first %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

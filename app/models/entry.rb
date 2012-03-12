@@ -4,7 +4,7 @@ class Entry < ActiveRecord::Base
   private
   
   def self.is_written?(params)
-    entry_date = Date::strptime("#{params[:day]}-#{params[:month]}-#{params[:year]}", "%d-%m-%y").to_datetime
+    entry_date = params.is_a?(Time) || params.is_a?(Date) ? params : Date::strptime("#{params[:year]}-#{params[:month]}-#{params[:day]}", "%y-%m-%d").to_datetime
     entry = Entry.find(:all, :conditions => ["created_at BETWEEN ? AND ?", entry_date.beginning_of_day, entry_date.end_of_day])
     return entry.size > 0 ? entry : false
   end
@@ -15,7 +15,7 @@ class Entry < ActiveRecord::Base
       Entry.find(:all, :conditions => ["YEAR(created_at) = ? AND MONTH(created_at) = ? AND DAY(created_at) = ?", entry_date.year, entry_date.month, entry_date.day])
     else
       entry_date = Date::strptime("#{params[:day]}-#{params[:month]}-2012", "%d-%m-%y").to_datetime
-      Entry.find(:all, :conditions => ["MONTH(created_at) = ? AND DAY(created_at) = ?", entry_date.month, entry_date.day])
+      Entry.find(:all, :order => 'created_at DESC', :conditions => ["MONTH(created_at) = ? AND DAY(created_at) = ?", entry_date.month, entry_date.day])
     end
   end
   
