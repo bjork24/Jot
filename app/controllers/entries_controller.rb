@@ -49,8 +49,6 @@ class EntriesController < ApplicationController
     end
   end
 
-  # PUT /entries/1
-  # PUT /entries/1.xml
   def update
     @entry = Entry.find(params[:id])
 
@@ -65,8 +63,6 @@ class EntriesController < ApplicationController
     end
   end
 
-  # DELETE /entries/1
-  # DELETE /entries/1.xml
   def destroy
     @entry = Entry.find(params[:id])
     @entry.destroy
@@ -76,4 +72,13 @@ class EntriesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def search
+    if(params[:field])
+      @entries = Entry.find(:all, :order => 'created_at DESC', :conditions => ["#{params[:field]} REGEXP '[[:<:]]#{params[:query]}[[:>:]]'"])
+    else
+      @entries = Entry.find(:all, :order => 'created_at DESC', :conditions => ["body REGEXP '[[:<:]]#{params[:query]}[[:>:]]' OR title REGEXP '[[:<:]]#{params[:query]}[[:>:]]'"])
+    end
+  end
+  
 end

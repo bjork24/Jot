@@ -1,0 +1,13 @@
+<% if @entries.size > 0 %>
+  <h1>Found <%= @entries.size %> jots that mention "<%= params[:query] %>" <%= " in the #{params[:field]}" if params[:field]%></h1>
+<% else %>
+  <h1>Nothing was found</h1>
+<% end %>
+
+<ul>
+  <% @entries.each do |entry| %>
+    <li>
+      <%= link_to "#{entry.title} - #{entry.created_at.strftime('%a, %m.%d.%y')}", entry %>
+    </li>
+  <% end %>
+</ul>

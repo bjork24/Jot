@@ -14,4 +14,7 @@ Jot::Application.routes.draw do
   match '/entries/:month/:day' => 'entries#show'
   match '/entries/:year/:month/:day' => 'entries#show'
   
+  match '/search/:query' => 'entries#search'
+  match '/search/:field/:query' => 'entries#search'
+  
 end
