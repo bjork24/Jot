@@ -19,6 +19,7 @@
   <div class="field">
     <%= f.label :body %><br />
     <%= f.text_area :body %>
+    <span id="entry-word-count">0</span>
   </div>
   
   <input type="hidden" name="date_token" value="<%= "#{params[:year]}-#{params[:month]}-#{params[:day]}" %>" />

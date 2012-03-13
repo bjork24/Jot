@@ -1,5 +1,8 @@
 class Entry < ActiveRecord::Base
   
+  validates :title, :presence => true
+	validates :body, :presence => true, :length => { :maximum => 500 }
+  
   private
   
   def self.for_event(event)

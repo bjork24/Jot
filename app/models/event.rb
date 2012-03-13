@@ -1,5 +1,8 @@
 class Event < ActiveRecord::Base
   
+  validates :name, :presence => true
+  validates :date, :presence => true
+  
   private
   
   def self.for_entry(entry)
