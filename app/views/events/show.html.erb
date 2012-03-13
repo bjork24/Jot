@@ -1,20 +1,9 @@
-<p id="notice"><%= notice %></p>
+<h1><%= @event.name %></h1>
 
-<p>
-  <b>Name:</b>
-  <%= @event.name %>
-</p>
-
-<p>
-  <b>Date:</b>
-  <%= @event.date %>
-</p>
-
-<p>
-  <b>User:</b>
-  <%= @event.user %>
-</p>
-
-
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<% @entries.each do |entry| %>
+  <div>
+    <h1><%= entry.title %></h1>
+    <h2><%= entry.created_at.strftime("%A, %B %e, %Y") %></h2>
+    <p><%= entry.body %></p>
+  </div>
+<% end %>

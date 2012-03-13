@@ -7,6 +7,7 @@ class EntriesController < ApplicationController
     (0..14).each do |n|
       @entries << Entry.is_written?(Date.today - n)
     end
+    @events = Event.in_order
   end
 
   def show
@@ -15,6 +16,7 @@ class EntriesController < ApplicationController
       redirect_to("/entries/#{entry.strftime("%y")}/#{entry.month}/#{entry.day}")
     else
       @entries = Entry.get_entries(params)
+      @events = Event.for_entry(@entries.first)
     end
   end
 

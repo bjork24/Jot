@@ -1,5 +1,20 @@
 class Event < ActiveRecord::Base
-  belongs_to :user
+  
+  private
+  
+  def self.for_entry(entry)
+    Event.find(:all, :conditions => ["MONTH(date) = ? AND DAY(date) = ?", entry.created_at.month, entry.created_at.day])
+  end
+  
+  def self.in_order
+    today = Date.today
+    checkDate = Date.new(2012,today.month,today.day)
+    events = {
+      :future => Event.find(:all, :order => 'date ASC', :conditions => ["date >= ?", checkDate]),
+      :past => Event.find(:all, :order => 'date ASC', :conditions => ["date < ?", checkDate])
+    }
+  end
+  
 end
 
 

@@ -10,3 +10,17 @@
     </li>
   <% end %>
 </ul>
+
+<hr/>
+
+<ol>
+<% @events[:future].each do |e| %>
+  <li><%= link_to e.name, e %><%= " - #{e.date} - #{days_till_event(e.date)} days" %></li>
+<% end %>
+</ol>
+
+<ol style="color: #777;">
+<% @events[:past].each do |e| %>
+  <li><%= link_to e.name, e %><%= " - #{e.date} - #{days_till_event(e.date + 1.year)} days" %></li>
+<% end %>
+</ol>

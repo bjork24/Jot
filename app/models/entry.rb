@@ -1,7 +1,10 @@
 class Entry < ActiveRecord::Base
-  belongs_to :user
   
   private
+  
+  def self.for_event(event)
+    Entry.find(:all, :order => 'created_at DESC', :conditions => ["MONTH(created_at) = ? AND DAY(created_at) = ?", event.date.month, event.date.day])
+  end
   
   def self.is_written?(params)
     entry_date = params.is_a?(Time) || params.is_a?(Date) ? params : Date::strptime("#{params[:year]}-#{params[:month]}-#{params[:day]}", "%y-%m-%d").to_datetime

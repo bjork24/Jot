@@ -1,8 +1,4 @@
-class User < ActiveRecord::Base
-  
-  has_many :entries
-  has_many :events
-  
+class User < ActiveRecord::Base  
   def self.create_with_omniauth(auth)
     create! do |user|
       user.provider = auth["provider"]

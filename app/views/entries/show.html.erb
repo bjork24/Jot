@@ -5,3 +5,10 @@
     <p><%= entry.body %></p>
   </div>
 <% end %>
+
+<hr>
+
+<h1>Events</h1>
+<% @events.each do |event| %>
+  <%= link_to event.name, event %>
+<% end %>
