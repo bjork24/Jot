@@ -34,9 +34,10 @@ class EventsController < ApplicationController
 
   # POST /events
   # POST /events.xml
-  def create
+  def create    
     @event = Event.new(params[:event])
-
+    @event.date = Date::strptime("12-#{params[:event_date][:month]}-#{params[:event_date][:day]}", "%y-%m-%d")
+    
     respond_to do |format|
       if @event.save
         format.html { redirect_to(@event, :notice => 'Event was successfully created.') }

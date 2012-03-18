@@ -24,3 +24,5 @@
   <li><%= link_to e.name, e %><%= " - #{e.date} - #{days_till_event(e.date + 1.year)} days" %></li>
 <% end %>
 </ol>
+
+<%= link_to "New Event", new_event_url %>

@@ -35,12 +35,18 @@ class EntriesController < ApplicationController
 
   def create
     if params[:date_token]
-      jotDate = Date::strptime(params[:date_token], "%y-%m-%d").to_datetime
+      jotDate = Date::strptime(params[:date_token], "%y-%m-%d")
       @entry = Entry.new(params[:entry])
       respond_to do |format|
         if @entry.save
-          @entry.created_at = jotDate
+          @entry.created_at = jotDate.to_datetime
           @entry.save
+          if not params[:special].blank?
+            Event.create(
+              :name => params[:special],
+              :date => Date::strptime("12-#{jotDate.month}-#{jotDate.day}","%y-%m-%d")
+            )
+          end
           format.html { redirect_to("/entries/#{jotDate.month}/#{jotDate.day}", :notice => 'Entry was successfully created.') }
           format.xml  { render :xml => @entry, :status => :created, :location => @entry }
         else

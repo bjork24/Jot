@@ -21,6 +21,10 @@
     <%= f.text_area :body %>
     <span id="entry-word-count">0</span>
   </div>
+  <div class="field">
+    <label>Special Date</label><br/>
+    <input type="text" name="special" />
+  </div>
   
   <input type="hidden" name="date_token" value="<%= "#{params[:year]}-#{params[:month]}-#{params[:day]}" %>" />
   

@@ -16,12 +16,10 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :date %><br />
-    <%= f.date_select :date %>
-  </div>
-  <div class="field">
-    <%= f.label :user %><br />
-    <%= f.text_field :user %>
+    <label>Month / Day</label><br />
+    <input maxlength="2" type="text" name="event_date[month]" />
+    &nbsp;&nbsp;/&nbsp;&nbsp;
+    <input maxlength="2" type="text" name="event_date[day]" />
   </div>
   <div class="actions">
     <%= f.submit %>
