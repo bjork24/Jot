@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 gem 'rails', '3.0.9'
 gem 'mysql2', '0.2.11'
 gem 'jquery-rails', '1.0.12'
-gem "compass", "0.11.7"
+gem 'compass', '0.11.7'
 gem 'omniauth', '0.2.6'
 
 group :development do
