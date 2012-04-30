@@ -4,4 +4,3 @@ log/*.log
 tmp/
 config/database.yml
 lib/tasks/import.rake
-.DS_Store
