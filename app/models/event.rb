@@ -20,13 +20,13 @@ class Event < ActiveRecord::Base
 end
 
 
+
 # == Schema Information
 #
 # Table name: events
 #
-#  id      :integer(4)      not null, primary key
-#  name    :string(255)
-#  date    :date
-#  user_id :integer(4)
+#  id   :integer(4)      not null, primary key
+#  name :string(255)
+#  date :date
 #
 

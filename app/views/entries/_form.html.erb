@@ -12,14 +12,28 @@
     </div>
   <% end %>
 
+  <h2><%= Date::strptime("#{params[:year]}-#{params[:month]}-#{params[:day]}", "%y-%m-%d").strftime("%A, %B %-d, %Y ") %></h2>
+  
   <div class="field">
     <%= f.label :title %><br />
     <%= f.text_field :title %>
   </div>
   <div class="field">
     <%= f.label :body %><br />
-    <%= f.text_area :body %>
-    <span id="entry-word-count">0</span>
+    <%= f.text_area :body, :'data-range' => 500 %> 
+  </div>
+  <div class="field">
+    <%= f.label :note %><br />
+    <%= f.text_area :note %>
+  </div>
+  <div class="field">
+    <%= f.label :food %><br />
+    <%= f.text_area :food, :'data-range' => 255 %>
+  </div>
+  <div class="field">
+    <%= f.label :pain %><br />
+    <%= f.range_field :pain, :in => 1..10, :value => 1 %>
+    <span id="entry-pain-value">1</span>
   </div>
   <div class="field">
     <label>Special Date</label><br/>

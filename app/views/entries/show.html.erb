@@ -3,6 +3,7 @@
     <h1><%= entry.title %></h1>
     <h2><%= entry.created_at.strftime("%A, %B %e, %Y") %></h2>
     <p><%= entry.body %></p>
+    <p><%= entry.pain unless entry.pain.nil? %></p>
   </div>
 <% end %>
 
@@ -12,3 +13,6 @@
 <% @events.each do |event| %>
   <%= link_to event.name, event %>
 <% end %>
+
+<hr>
+<%= link_to 'Back', entries_path %>
