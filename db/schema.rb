@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(:version => 20120430141526) do
     t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "pain",       :limit => 1
+    t.integer  "pain",       :limit => 2
     t.string   "food"
   end
 
