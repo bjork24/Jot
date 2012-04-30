@@ -10,12 +10,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120313025027) do
+ActiveRecord::Schema.define(:version => 20120430140540) do
 
   create_table "entries", :force => true do |t|
     t.string   "title"
     t.text     "body"
-    t.string   "note"
+    t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
