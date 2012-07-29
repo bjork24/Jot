@@ -1,0 +1,6 @@
+<div class="entry">
+  <h1><%= entry.title %></h1>
+  <h2><%= entry.created_at.strftime("%A, %B %e, %Y") %></h2>
+  <p class="body"><%= entry.body %></p>
+  <p class="pain"><%= entry.pain unless entry.pain.nil? %></p>
+</div>

@@ -1,10 +1,5 @@
 <% @entries.each do |entry| %>
-  <div>
-    <h1><%= entry.title %></h1>
-    <h2><%= entry.created_at.strftime("%A, %B %e, %Y") %></h2>
-    <p><%= entry.body %></p>
-    <p><%= entry.pain unless entry.pain.nil? %></p>
-  </div>
+  <%= render "entry", :entry => entry %>
 <% end %>
 
 <hr>
