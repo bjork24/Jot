@@ -5,7 +5,8 @@ gem 'mysql2', '0.2.11'
 gem 'jquery-rails', '1.0.12'
 gem 'sass', '3.2.0.alpha.277'
 gem 'compass', '0.11.7'
-gem 'omniauth', '0.2.6'
+gem 'omniauth', '1.1.4'
+gem "omniauth-twitter"
 
 group :development do
   gem 'thin', '1.2.11'
