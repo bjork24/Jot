@@ -16,5 +16,7 @@ Jot::Application.routes.draw do
   
   match '/search/:query' => 'entries#search'
   match '/search/:field/:query' => 'entries#search'
+
+  match '/export' => 'export#show'
   
 end

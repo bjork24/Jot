@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.9'
-gem 'mysql2', '0.2.11'
+gem 'rails', '3.1.0'
+gem 'mysql2'
 gem 'jquery-rails', '1.0.12'
 gem 'sass', '3.2.0.alpha.277'
 gem 'compass', '0.11.7'
